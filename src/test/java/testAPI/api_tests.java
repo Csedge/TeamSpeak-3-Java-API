@@ -98,6 +98,26 @@ public class api_tests {
 		api.editDatabaseClient(clientDBId, options);
 		api.editInstance(property, value);
 		api.getBans();
+		api.getBindings();
+		api.getChannelByNameExact(name, ignoreCase);
+		api.getChannelClientPermissions(channelId, clientDBId);
+		api.getChannelGroupClients(channelId, clientDBId, groupId);
+		api.getChannelGroupClientsByChannelGroupId(groupId);
+		api.getChannelGroupClientsByChannelId(channelId);
+		api.getChannelGroupClientsByClientDBId(clientDBId);
+		api.getChannelGroupPermissions(groupId);
+		api.getChannelGroups();
+		api.getChannelInfo(channelId);
+		api.getChannelPermissions(channelId);
+		api.getChannels();
+		api.getChannelsByName(name);
+		api.getClientByNameExact(name, ignoreCase);
+		api.getClientByUId(clientUId);
+		api.getClientInfo(clientId);
+		api.getClientPermissions(clientDBId);
+		api.getClientPermissions(clientDBId);
+		api.getClients();
+		api.getClientsByName(name);
 	}
 
 }
