@@ -221,4 +221,10 @@ public class FileCommandsTest {
     Assert.assertEquals(expected, FileCommands.ftRenameFile("/dir1", "dir2", 1, null, 2, null).toString());
     Assert.assertEquals(expected, FileCommands.ftRenameFile("dir1", "/dir2", 1, null, 2, null).toString());
   }
+  @Test
+  public void ftRenameFileAndChannel() {
+    final String expected = "ftrenamefile cid=1 cpw= tcid=2 tcpw= oldname=\\/dir1 newname=\\/dir2";
+    Assert.assertEquals(expected, FileCommands.ftRenameFile("/dir1", "dir2", 1, null, 2, null).toString());
+    Assert.assertEquals(expected, FileCommands.ftRenameFile("dir1", "/dir2", 1, null, 2, null).toString());
+  }
 }
