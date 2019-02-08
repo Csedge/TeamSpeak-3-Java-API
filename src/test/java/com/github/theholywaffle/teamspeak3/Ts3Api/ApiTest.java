@@ -73,7 +73,7 @@ public class ApiTest {
         TS3Api obj = query.getApi();
         obj.login("serveradmin","FyXmnFvP");
         obj.selectVirtualServerById(1);
-        obj.renameChannelGroup(1,"Hello");
+        obj.renameChannelGroup(2,"Hello");
 
     }
     @Test
@@ -113,17 +113,6 @@ public class ApiTest {
         obj.sendServerMessage("Server Msg Test");
     }
     @Test
-    public void TestSetMsgRed(){
-        final TS3Config config = new TS3Config();
-        config.setHost("127.0.0.1");
-        config.setEnableCommunicationsLogging(true);
-        final TS3Query query = new TS3Query(config);
-        query.connect();
-        TS3Api obj = query.getApi();
-        obj.login("serveradmin","FyXmnFvP");
-        //obj.setMessageRead("100");
-    }
-    @Test
     public void TestSetNickname(){
         final TS3Config config = new TS3Config();
         config.setHost("127.0.0.1");
@@ -147,7 +136,17 @@ public class ApiTest {
         obj.login("serveradmin","FyXmnFvP");
         byte[] EXAMPLE_FILE_CONTENT = "Hello file transferring world!".getBytes(StandardCharsets.UTF_8);
         obj.uploadFileDirect(EXAMPLE_FILE_CONTENT,"/dir1/TestUploadeFiles",true,1);
-
+    }
+    @Test
+    public  void TestStartServer(){
+        final TS3Config config = new TS3Config();
+        config.setHost("127.0.0.1");
+        config.setEnableCommunicationsLogging(true);
+        final TS3Query query = new TS3Query(config);
+        query.connect();
+        TS3Api obj = query.getApi();
+        obj.login("serveradmin","FyXmnFvP");
+        obj.startServer(1);
     }
    @Test
     public void TestStopServer(){
@@ -160,5 +159,25 @@ public class ApiTest {
         obj.login("serveradmin","FyXmnFvP");
         obj.stopServer(1,"TestStopServer");
     }
+    @Test
+    public void TestChannelCreate(){
+        final TS3Config config = new TS3Config();
+        config.setHost("127.0.0.1");
+        config.setEnableCommunicationsLogging(true);
+        final TS3Query query = new TS3Query(config);
+        query.connect();
+        TS3Api obj = query.getApi();
+        obj.login("serveradmin","FyXmnFvP");
+        obj.selectVirtualServerById(1);
+        final Map<ChannelProperty, String> properties = new HashMap<>();
+        properties.put(ChannelProperty.CHANNEL_FLAG_PERMANENT, "1");
+        int defaultChannelId = obj.whoAmI().getChannelId();
+        System.out.println(defaultChannelId);
+        properties.put(ChannelProperty.CPID, String.valueOf(defaultChannelId));
+        properties.put(ChannelProperty.CHANNEL_TOPIC, "TestChannelAAA");
+        obj.createChannel("TestChannel2AAA", properties);
 
+        int newid=obj.whoAmI().getChannelId();
+        System.out.println(newid);
+    }
 }
