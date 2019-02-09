@@ -35,7 +35,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 
-final class CommandBuilder {
+public final class CommandBuilder {
 
 	private final String commandName;
 	private final Collection<Parameter> parameters;

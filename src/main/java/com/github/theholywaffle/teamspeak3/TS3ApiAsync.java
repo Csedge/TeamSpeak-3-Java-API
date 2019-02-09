@@ -5341,7 +5341,7 @@ public class TS3ApiAsync {
 	 *
 	 * @return a future to track the progress of this command
 	 */
-	private CommandFuture<Void> executeAndReturnError(Command command) {
+	public CommandFuture<Void> executeAndReturnError(Command command) {
 		CommandFuture<Void> future = command.getFuture()
 				.map(__ -> null); // Mark as successful
 
@@ -5360,7 +5360,7 @@ public class TS3ApiAsync {
 	 *
 	 * @return the value of the specified {@code String} property
 	 */
-	private CommandFuture<String> executeAndReturnStringProperty(Command command, String property) {
+	public CommandFuture<String> executeAndReturnStringProperty(Command command, String property) {
 		CommandFuture<String> future = command.getFuture()
 				.map(result -> result.getFirstResponse().get(property));
 
@@ -5378,7 +5378,7 @@ public class TS3ApiAsync {
 	 *
 	 * @return the value of the specified {@code Integer} property
 	 */
-	private CommandFuture<Integer> executeAndReturnIntProperty(Command command, String property) {
+	public CommandFuture<Integer> executeAndReturnIntProperty(Command command, String property) {
 		CommandFuture<Integer> future = command.getFuture()
 				.map(result -> result.getFirstResponse().getInt(property));
 
