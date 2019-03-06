@@ -130,7 +130,7 @@ public class TS3QueryTest {
 		query = new TS3Query(config);
 		
 		
-		for(int i = 0; i < 100; i = i + 1)
+		for(int i = 0; i < 10; i = i + 1)
 		{
 			thread = new Thread() {
 				TS3Query q = query;
@@ -157,7 +157,7 @@ public class TS3QueryTest {
 		
 		query.getApi().login("serveradmin", "1234");
 		
-		for(int i = 0; i < 100; i = i + 1)
+		for(int i = 0; i < 10; i = i + 1)
 		{
 			thread = new Thread() {
 				TS3Query q = query;

@@ -1,9 +1,11 @@
-package com.github.theholywaffle.teamspeak3.commands;
+package unitTests;
 
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
+import com.github.theholywaffle.teamspeak3.commands.FileCommands;
 
 public class FileCommandsTest {
 
