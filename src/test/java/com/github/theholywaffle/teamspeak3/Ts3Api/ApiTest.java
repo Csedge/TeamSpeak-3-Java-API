@@ -36,7 +36,7 @@ public class ApiTest {
         TS3Api obj = query.getApi();
         obj.login("serveradmin","FyXmnFvP");
        obj.selectVirtualServerById(1);
-       obj.moveFile("/dir1/1.txt","/dir2/aasdd.txt",1);
+       obj.moveFile("/dir1/1.txt","/dir2/b.txt",1);
     }
     @Test
     public void Testmovequery(){
