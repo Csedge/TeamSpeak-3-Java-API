@@ -20,12 +20,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class manual_tests {
-	@Test
+
 	public void testCommandBuilderA()
 	{
 		//command builder and test integer for iterating through character codes
 		CommandBuilder cmdBld = null;
-		int testInt = 9;
+		int testInt = 65500;
 		
 		//lines 23 - 33 connect a test client to the server
 		final TS3Config config = new TS3Config();
@@ -44,7 +44,7 @@ public class manual_tests {
 		
 		
 		//loop through all valid character code points, testInt gets incremented each time.
-		while(Character.isValidCodePoint(testInt) && (testInt < 50))
+		while(Character.isValidCodePoint(testInt) && (testInt < 65536))
 		{
 			//build the command from the ground up
 			cmdBld = new CommandBuilder("sendtextmessage");
@@ -61,12 +61,12 @@ public class manual_tests {
 				
 				try
 				{
-					query.getAsyncApi().executeAndReturnError(cmdBld.build()).getUninterruptibly();
-					//api.sendChannelMessage(String.valueOf(Character.toChars(testInt)));
+					//query.getAsyncApi().executeAndReturnError(cmdBld.build()).getUninterruptibly();
+					api.sendChannelMessage(String.valueOf(Character.toChars(testInt)));
 				}
 				catch(Exception e)
 				{
-					System.out.print(e.getMessage());
+					System.out.print(e.getMessage() + "\n");
 				}
 			}
 			else
@@ -79,7 +79,7 @@ public class manual_tests {
 				catch(Exception e)
 				{
 					System.out.print("" + testInt + "\n");
-					System.out.print(e.getMessage());
+					System.out.print(e.getMessage() + "\n");
 				}
 			}
 			testInt = testInt + 1;
@@ -102,7 +102,6 @@ public class manual_tests {
 		//System.out.print(testInt);
 	}
 	
-	@Test
 	public void testCommandBuilderB()
 	{
 		//command builder and test integer for iterating through character codes
@@ -122,10 +121,13 @@ public class manual_tests {
 		api.setNickname("PutPutBot");
 		
 		//make a string for use in tests
-		String str = new String(String.valueOf(Character.toChars(11)));
+		String str = new String(String.valueOf(Character.toChars(2)));
 		
-		str = str.replace(String.valueOf((char) 11), "\\v");
+		//str = str.replace(String.valueOf((char) 11), "\\v");
+		//str = str + "a";
+		int a = (int) str.charAt(0);
 		api.sendChannelMessage(str);
+		api.sendChannelMessage("a");
 		
 		
 		query.exit();
@@ -134,7 +136,7 @@ public class manual_tests {
 		//System.out.print(testInt);
 	}
 	
-	@Test
+
 	public void testStressServerStopStart()
 	{
 		final TS3Config config = new TS3Config();
@@ -227,7 +229,7 @@ public class manual_tests {
 	
 	}
 	
-	@Test
+
 	public void testReconnect()
 	{
 		final TS3Config config = new TS3Config();

@@ -12,7 +12,7 @@ public class api_tests {
 
 	@Test
 	public void test() {
-		/*
+		
 		final TS3Config config = new TS3Config();
 		config.setHost("localhost");
 
@@ -20,11 +20,20 @@ public class api_tests {
 		query.connect();
 
 		final TS3Api api = query.getApi();
-		api.login("serveradmin", "kdTfpo1q");
+		api.login("serveradmin", "1234");
 		api.selectVirtualServerById(1);
 		api.setNickname("PutPutBot");
-		api.sendChannelMessage("PutPutBot is online!");
 		
+		//make a string for use in tests
+		String str = new String(String.valueOf(Character.toChars(11)));	
+		//str = str.replace(String.valueOf((char) 10), "\\n");
+		//str = "|";
+		//api.sendChannelMessage(str);
+		api.sendChannelMessage("failed");
+		
+		//api.sendChannelMessage(String.valueOf(Character.toChars(10)));
+		query.exit();
+		/*
 		api.addBan(ip, name, uid, timeInSeconds, reason);
 		api.addBan(ip, name, uid, myTSId, timeInSeconds, reason);
 		api.addChannelClientPermission(channelId, clientDBId, permName, permValue);
