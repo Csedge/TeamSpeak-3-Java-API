@@ -38,6 +38,9 @@ public class KeyValueParam extends Parameter {
 
 		this.key = key;
 		this.value = (value != null) ? value : "";
+		
+		blockIllegalStrings(this.value);
+		blockIllegalStrings(this.key);
 	}
 
 	public KeyValueParam(String key, int value) {
@@ -57,5 +60,25 @@ public class KeyValueParam extends Parameter {
 		str.append(CommandEncoding.encode(key));
 		str.append('=');
 		str.append(CommandEncoding.encode(value));
+	}
+	
+	public static void blockIllegalStrings(String str)
+	{
+		int code;
+		if (!str.equals(""))
+		{
+			code =  (int) str.charAt(0);
+			if (	
+					code < 9 || 
+					code == 11 ||
+					code == 12 || 
+					(code > 13 && code < 32) || 
+					(code > 126 && code < 160) || 
+					(code > 65528 && code < 65536)
+				)
+			{
+				throw new IllegalArgumentException("Illegal string was passed to command.");
+			}
+		}
 	}
 }
