@@ -706,7 +706,9 @@ public class TS3Api {
 	 * @see Channel
 	 */
 	public int createChannel(String name, Map<ChannelProperty, String> options) {
-		return asyncApi.createChannel(name, options).getUninterruptibly();
+		boolean ignore = true;
+		asyncApi.createChannel(name, options).getUninterruptibly();
+		return asyncApi.getChannelByNameExact(name,ignore).getUninterruptibly().getId();
 	}
 
 	/**
